@@ -1,0 +1,19 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+ autonumber
+
+  actor User order 1
+  participant Sheet order 2
+  participant iPaaS order 3
+  participant PandaDoc order 4
+
+  User -> Sheet : adds new row
+
+  Group#LightGray #FFF7E3 monitor
+    Sheet -[#blue]>o iPaaS : new row data
+    iPaaS o-[#blue]> PandaDoc : trigger template
+  end
+
+@enduml

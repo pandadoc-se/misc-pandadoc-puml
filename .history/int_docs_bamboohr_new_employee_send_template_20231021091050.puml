@@ -1,0 +1,28 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam actorBorderColor black
+skinparam actorBackgroundColor DarkSeaGreen
+
+  actor Employee order 1
+
+  Box PandaDoc
+    participant Document order 2
+    participant ProcessAutomations order 3
+  end Box
+
+  Box BambooHR #LightGray
+    database EmployeeRecord order 4
+  end Box
+
+  group#LightGray #FFF7E3 monitor
+    ProcessAutomations o<[#red]- EmployeeRecord : New EmployeeRecord Added
+    Document <--[#red]o ProcessAutomations: Create from [Template] & Send
+  end
+
+  Employee -> Document: Employee Signs Document
+
+@enduml

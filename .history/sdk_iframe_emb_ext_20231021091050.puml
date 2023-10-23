@@ -1,0 +1,64 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+
+  participant CustomProgram order 1
+  participant PandaDoc order 2
+  actor User order 4
+
+skinparam ActorBackgroundColor DarkOrange
+skinparam ActorBorderColor DarkOrange
+skinparam ActorFontColor DarkOrange
+
+  actor Recipient order 5
+
+  CustomProgram o-[#red]> PandaDoc : Create <size:32><&document></size>
+
+  autonumber stop
+    PandaDoc -> PandaDoc : Asynchronous Work
+  autonumber resume
+  
+  ==Time==
+  
+  CustomProgram <[#DarkOrange]--o PandaDoc : Webhook [Drafted] Notification <&bell>
+  note right: **//or//**\n  use syncronous\n  polling method
+
+  CustomProgram o-[#red]> PandaDoc : Send w/ Silent
+
+  CustomProgram o-[#red]> PandaDoc : Create Session w/ User eMail & TTL
+
+  autonumber stop
+    CustomProgram <[#red]-- PandaDoc : Session-Id
+  autonumber resume
+
+  CustomProgram -> CustomProgram : Construct Url w/ Session-Id
+  
+  CustomProgram -> CustomProgram : iFrame Url
+
+  group#LightGray #FFF7E3 iFramed Url Session
+
+    PandaDoc <[#blue]-> User : PandaDoc Experience //(from iFrame)//
+  
+    autonumber stop
+      User <- User :**>** Reviews/Edits/Enters Data\n**>** Signs Document
+    autonumber resume
+
+    CustomProgram <--[#DarkOrange]--o PandaDoc  : JavaScript Events //(Optional)// <&bell>
+
+  end group
+
+  PandaDoc o-[#DarkOrange]> Recipient : eMail Notification
+
+  PandaDoc <[#blue]-> Recipient : PandaDoc Experience //(after Clicking Link)//
+  
+  autonumber stop
+    Recipient <- Recipient :**>** Reviews/Edits/Enters Data\n**>** Signs Document
+  autonumber resume
+
+  CustomProgram <[#DarkOrange]--o PandaDoc  : Asynchronous Webhook Notifications //(Optional)// <&bell>
+
+@enduml

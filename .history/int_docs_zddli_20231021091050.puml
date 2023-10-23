@@ -1,0 +1,33 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box ZenDesk
+    actor User order 1
+    database Deal order 2
+    database DealLineItems order 3
+    participant PanadaDocAddOn order 4
+  end Box
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 6
+    participant ProcessAutomations order 5
+  end Box
+
+  User -> Deal: Initiates
+
+  autonumber stop
+    Deal <-- Deal: add Deal Data
+    Deal --> Deal: add DealLineItems Data
+  autonumber resume
+
+  PanadaDocAddOn -> Document: Create
+  
+  group#LightGray #FFF7E3 monitor
+    Document o-[#red]> ProcessAutomations: Status Changes
+    ProcessAutomations -[#red]> DealLineItems: Update DealLineItems
+  end
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PandaDoc
+    actor User order 1
+    participant Document order 2
+    participant ProcessAutomations order 3
+  end Box
+
+  actor Candidate order 4
+
+  Box Greenhouse #LightGray
+    database CandidateRecord order 5
+  end Box
+
+  User -> Document: Creates
+  Document --> Document: Send
+
+  group#LightGray #FFF7E3 monitor
+    ProcessAutomations o<[#red]- Document : Status Changes to Complete
+    autonumber stop
+      CandidateRecord <--[#red]o ProcessAutomations: Create new CandidateRecord 
+	autonumber resume
+  end
+
+@enduml

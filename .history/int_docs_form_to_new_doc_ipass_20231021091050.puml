@@ -1,0 +1,28 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PandaDoc #WhiteSmoke
+    participant Form order 1
+    participant Document order 2
+    participant Template order 3
+  end Box
+
+  Box iPaaS
+    participant Flow order 4
+  end Box
+
+  Form -[#blue]> Document: Collect Data into Doc<sup>1</sup> 
+
+  group#LightGray #FFF7E3 monitor
+    Document -[#red]>o Flow: Doc<sup>1</sup> Status Changes to <i>Completed</i>
+    Flow o-[#red]> Template: Pass Form Data
+
+	autonumber stop
+	  Template --[#red]> Document: <&sun> Create New Doc<sup>2</sup>
+	autonumber resume
+  end
+
+@enduml

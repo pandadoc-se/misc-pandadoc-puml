@@ -1,0 +1,27 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+  
+skinparam responseMessageBelowArrow true
+
+  participant CustomProgram order 1
+  participant PandaDoc order 2
+  actor User order 3
+
+  CustomProgram o-[#red]> PandaDoc : Create
+
+  autonumber stop
+  PandaDoc -> PandaDoc : Asynchronous Work
+  autonumber resume
+
+  ==Time==
+  
+  CustomProgram <[#DarkOrange]--o PandaDoc : Webhook [Drafted] Notification <&bell>
+
+  CustomProgram o-[#red]> PandaDoc : Send
+  PandaDoc -[#blue]-> User : eMail Notification <&bell>
+  PandaDoc <-> User : Sign
+
+@enduml
