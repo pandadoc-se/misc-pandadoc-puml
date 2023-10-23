@@ -1,0 +1,39 @@
+@startuml 'how_pandadoc_parts.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+!theme amiga
+
+skinparam NoteBackgroundColor #FFF7E3
+skinparam NoteFontColor #47B972
+skinparam NoteFontName Arial
+
+folder Template {
+  [**StaticContent**\nabc\nabc]
+  [**Roles**]
+  [**Settings**]
+  cloud "Placeholders Data Merge"#Black {
+	entity data#Gray
+    data --> [**Variables**]#DarkGray
+      note bottom #FFF7E3
+        inside Text Blocks, 
+        using brackets syntax 
+        [//VariableName//]
+      end note
+    data --> [**FillableFields**]#DarkGray
+	  note bottom #FFF7E3
+		<&arrow-circle-right> Text
+		<&arrow-circle-right> Date
+		<&arrow-circle-right> CheckBox
+		<&arrow-circle-right> RadioButtons
+		<&arrow-circle-right> DropDown
+	  end note
+    data --> [**SmartLogic**]#DarkGray
+      note bottom #FFF7E3
+        **if** //<this>// **then show** //<that>//
+      end note
+  }
+}
+
+@enduml
+

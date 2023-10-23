@@ -1,0 +1,24 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+
+  participant CustomProgram order 1
+  participant PandaDoc order 2
+  actor Recipient order 3
+
+
+  CustomProgram o-[#red]> PandaDoc : Create Session w/ eMail & TTL
+  
+  autonumber stop
+    CustomProgram <[#red]-- PandaDoc : Session-Id
+  autonumber resume
+
+  CustomProgram -> CustomProgram : Construct Url w/ Session-Id
+  
+  CustomProgram o[#blue]-> Recipient : Send Url
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 1
+    participant ProcessAutomations order 2
+    collections Folders order 3
+  end Box
+
+  group#LightGray #FFF7E3 monitor
+    Document o-[#red]> ProcessAutomations: Status Changes (Sent or Completed)
+    ProcessAutomations -[#red]> Folders: Moves Document
+  end
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+skinparam ActorBackgroundColor DarkOrange
+skinparam ActorBorderColor DarkOrange
+skinparam ActorFontColor DarkOrange
+
+  actor User order 0
+
+  participant CustomWebApp order 1
+  participant PandaDocDocument order 2
+
+  User -> CustomWebApp : Logs in
+
+  autonumber stop
+    User -> User : Triggers Document Create Feature
+	CustomWebApp -> CustomWebApp : Data Merge (optional)
+  autonumber resume
+
+  group#LightGray #FFF7E3 iFramed JS reference to PandaDoc.DocEditor()
+
+    PandaDocDocument <[#blue]-> User : User Interface Interactions //(through iFrame)//
+      note left: picks template,\nassigns roles,\nedits Documents,\nsends Document.
+
+    CustomWebApp <--[#DarkOrange]--o PandaDocDocument  : JavaScript Events //(Optional)// <&bell>
+      note left: onInit(),\nonDocumentCreate(),\nonDocumentSent(),\nonClose()
+
+  end group
+
+@enduml

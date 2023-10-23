@@ -1,0 +1,31 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PipeDrive
+    actor User order 1
+    database Deal order 2
+    database DealProducts order 3
+   end Box
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 4
+    participant ProcessAutomations order 5
+  end Box
+
+  User -> Deal: Initiates
+
+  autonumber stop
+    Deal <-- Deal: add Deal Data
+    Deal --> Deal: add DealProducts Data
+    Deal --> Deal: Creates PandaDoc Document
+  autonumber resume
+  
+  group#LightGray #FFF7E3 monitor
+    ProcessAutomations o<[#red]- Document : Status Changes (Declined or Completed)
+    Deal <--[#red]o ProcessAutomations: Update Stage
+  end
+
+@enduml

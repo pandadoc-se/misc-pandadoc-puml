@@ -1,0 +1,30 @@
+@startuml 'how_data_flow.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+skinparam sequenceMessageAlign center
+
+skinparam NoteBackgroundColor #FFF7E3
+skinparam NoteFontColor #47B972
+skinparam NoteFontName Arial
+
+  Box PandaDoc #EAEFEB
+	participant Documents order 4
+	queue Notifications order 5
+  end Box
+
+  Box DownStreamSystem #F5F1EE
+    entity CustomWebhook order 6
+  end Box
+
+  Documents o-[#red]> Notifications : Event <&bell>
+    note left #FFF7E3
+		<&arrow-circle-right> **document_state_changed**//, or//
+		<&arrow-circle-right> **recipient_completed**//, or//
+		<&arrow-circle-right> document_updated//, or//
+		<&arrow-circle-right> document_deleted//, or//
+		<&arrow-circle-right> document_creation_failed
+	end note
+  Notifications --[#orange]>o CustomWebhook : **JSON**\n//(Data)//<&paperclip>
+
+@enduml

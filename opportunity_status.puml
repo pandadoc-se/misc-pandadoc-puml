@@ -1,0 +1,26 @@
+@startuml 'title'
+
+  skinparam style strictuml
+
+  |#LightGray|S0|
+  start
+  :Prospect;
+  |#LightGreen|S1|
+  :Discovery;
+  |#LightGreen|S2|
+  :Value and Solution;
+  |#LightGreen|S3|
+  :Validate;
+  |#LightGreen|S4|
+  :Negotiate;
+  |#LightGray|S5|
+  :Closed Won;
+  stop
+
+  legend
+    |=  | **Color Legend** |
+    |<#lightgray>| AE Open/Close |
+    |<#lightgreen>| SE Engaged |
+  endlegend
+
+@enduml

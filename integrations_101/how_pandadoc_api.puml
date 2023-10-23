@@ -1,0 +1,27 @@
+@startuml 'how_pandadoc_parts.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+!theme amiga
+
+skinparam NoteBackgroundColor #FFF7E3
+skinparam NoteFontColor #47B972
+skinparam NoteFontName Arial
+
+folder API {
+  [**Authentication**\nAPI-Key, or\nOAuth Bearer Token]
+  cloud Targets {
+    [**Documents**]
+    [**Templates**]
+    [**Contacts**]
+    [**Forms**]
+    [**Folders**]
+	[**Webhooks**]
+    [**CLI**]
+	[**Workspace**]
+    [**Integration-Logs**]
+  }
+}
+
+@enduml
+

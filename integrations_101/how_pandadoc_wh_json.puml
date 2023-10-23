@@ -1,0 +1,50 @@
+@startuml 'how_pandadoc_parts.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+!theme amiga
+
+skinparam NoteBackgroundColor #FFF7E3
+skinparam NoteFontColor #47B972
+skinparam NoteFontName Arial
+
+package JSON {
+
+folder data {
+  [id]
+  [name]
+  [status]
+  [created_by]
+  [dates]
+  [metadadta]
+  [tags]
+  [pricing table]
+  package tokens#Black {
+	artifact Variables#DarkGray
+	Variables --> [v1]#Gray
+	Variables --> [v2]#Gray
+	Variables --> [vn]#Gray
+  }
+  package fields#Black {
+	artifact FillableFields#DarkGray
+	FillableFields --> [f1]#Gray
+	FillableFields --> [f2]#Gray
+	FillableFields --> [fn]#Gray
+  }
+  package recipients#Black {
+	artifact Roles#DarkGray
+	Roles --> [r1]#Gray
+	Roles --> [r2]#Gray
+	Roles --> [rn]#Gray
+  }
+  v2 -[hidden]down- FillableFields
+}
+
+folder event {
+  [**document_state_changed**//, or//\n**recipient_completed**//, or//\ndocument_deleted//, or//\ndocument_updated//, or//\ndocument_creation_failed]
+}
+
+}
+
+@enduml
+

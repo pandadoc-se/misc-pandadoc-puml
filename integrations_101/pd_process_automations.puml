@@ -1,0 +1,54 @@
+@startuml 'how_pandadoc_parts.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+!theme amiga
+
+skinparam NoteBackgroundColor #FFF7E3
+skinparam NoteFontColor #47B972
+skinparam NoteFontName Arial
+
+package CRM {
+	[**Salesforce**]
+	[**HubSpot**]
+	[msDynamics]
+	[Zoho]
+	[PipeDrive]
+	[ZenDesk]
+	[NetSuite]
+}
+
+package HR {
+	[**BambooHR**]
+	[**GreenHouse**]
+}
+
+package PD {
+  [**Folders**]
+}
+
+package Storage {
+	[**gDrive**]
+	[**OneDrive**]
+	[**SharePoint**]
+
+}
+
+cloud ProcessAutomations#Black {
+ artifact Recipies#Gray {
+ [recipieN]#DarkGray
+ [recipie2]#DarkGray
+ [recipie1]#DarkGray
+ }
+}
+
+CRM <-down-> ProcessAutomations
+HR <-down-> ProcessAutomations
+Storage <-up-> ProcessAutomations
+PD <-up-> ProcessAutomations
+
+recipie1 -[hidden]> recipie2
+recipie2 -[hidden]> recipieN
+
+@enduml
+

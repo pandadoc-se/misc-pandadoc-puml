@@ -1,0 +1,28 @@
+@startuml 'who_clients.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+skinparam sequenceMessageAlign center
+
+  Box API Client #E8F2FE
+    participant CustomApiProgram order 1
+  end Box
+
+  Box PandaDoc #EAEFEB
+    queue WebHook1 order 2
+    participant API order 3
+	queue WebHook2 order 4
+  end Box
+
+  Box SDK Client #E8F2FE
+    participant CustomSdkProgram order 5
+  end Box
+
+  CustomApiProgram o-[#red]> API : **Inbound**\n//(Data)//<&paperclip>
+  WebHook1 --[#orange]> CustomApiProgram : **Outbound**\n//(Data)//<&paperclip>
+  CustomSdkProgram o-[#red]> API : **Inbound**\n//(Data)//<&paperclip>
+	note right #yellow
+	  PandaDoc SDK Library
+	end note
+  WebHook2 --[#orange]> CustomSdkProgram : **Outbound**\n//(Data)//<&paperclip>
+@enduml

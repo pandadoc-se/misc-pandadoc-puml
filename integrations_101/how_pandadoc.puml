@@ -1,0 +1,29 @@
+@startuml 'how_pandadoc.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+skinparam sequenceMessageAlign center
+
+  Box Up-Stream System #E8F2FE
+    database UpStreamData order 1
+  end Box
+
+  Box PandaDoc #EAEFEB
+	queue Templates order 2
+	participant Documents order 3
+	queue WebHooks order 4
+  end Box
+
+  Box Down-Stream System #F5F1EE
+    database DownStreamData order 5
+  end Box
+
+	UpStreamData -[#red]> Templates : **APIs**\n//( in )//
+
+	Templates --[#orange]> Documents
+	Documents --[#orange]> WebHooks : Status Change <&bell>
+
+	WebHooks -[#red]> DownStreamData : **NOTIFICATIONS**\n//( out )//
+
+@enduml
+

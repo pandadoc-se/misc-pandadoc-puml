@@ -1,0 +1,36 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box Greenhouse
+    actor User order 1
+	database Job order 2
+	database Candidate order 2
+	database Application order 3
+    database Offer order 4
+  end Box
+
+  User -> Job : Create Job
+  Job -> Candidate : Create Candidate
+  Candidate -> Application : Link Candidate to Job (an "Application")
+  Application -> Application : Move (Job) Stage from Review to Offer
+  Application -> Offer : Create Offer Record
+
+  Offer -> Offer  : Document Reference Data: eMail & Job Title
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 5
+    participant ProcessAutomations order 6
+  end Box
+
+  User -> Document : Create Document from Template
+  Document -> Document : Link to Application\n, using eMail filter
+
+  group#LightGray #FFF7E3 monitor
+    ProcessAutomations o<[#red]- Document : Candidate Recipient Signs
+    Offer <--[#red]o ProcessAutomations: Update Application Stage, Candidate is marked as [Hired]
+  end
+
+@enduml

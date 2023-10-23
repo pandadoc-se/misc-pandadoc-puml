@@ -1,0 +1,22 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 1
+    participant Template order 2
+    participant ProcessAutomations order 3
+  end Box
+
+  group#LightGray #FFF7E3 monitor
+    Document -[#red]>o ProcessAutomations: Doc<sup>1</sup> Status Changes (Sent or Completed)
+    ProcessAutomations o-[#red]> Template: Select Template
+
+	autonumber stop
+	  Template --[#red]> Document: <&sun> Create New Doc<sup>2</sup>
+	autonumber resume
+  end
+
+@enduml

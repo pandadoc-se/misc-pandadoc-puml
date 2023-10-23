@@ -1,0 +1,32 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+skinparam ActorBackgroundColor DarkOrange
+skinparam ActorBorderColor DarkOrange
+skinparam ActorFontColor DarkOrange
+
+  actor User order 0
+
+  participant CustomWebPage order 1
+  participant PandaDocForm order 2
+
+  User -> CustomWebPage : Visits
+
+  autonumber stop
+    User -> User : Triggers Form Collection Feature
+  autonumber resume
+
+  group#LightGray #FFF7E3 iFramed Pulished Form Url
+
+    PandaDocForm <[#blue]-> User : Data Collection //(through iFrame)//
+  
+    CustomWebPage <--[#DarkOrange]--o PandaDocForm  : JavaScript Events //(Optional)// <&bell>
+      note left: loaded(),\nstarted(),\ncompleted(),\nexception()
+	
+  end group
+
+@enduml

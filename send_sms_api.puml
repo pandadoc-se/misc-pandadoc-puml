@@ -1,0 +1,28 @@
+
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+
+  participant CustomProgram order 1
+  participant PandaDoc order 2
+  participant SmsService order 3
+  actor Recipient order 4
+
+  CustomProgram o-[#red]> PandaDoc : Create
+  CustomProgram o-[#red]> PandaDoc : Send w/ Silent
+  CustomProgram o-[#red]> PandaDoc : Create Session w/ eMail & TTL
+  
+  autonumber stop
+  CustomProgram <[#red]-- PandaDoc : Session-Id
+  autonumber resume
+
+  CustomProgram -> CustomProgram : Construct Url w/ Session-Id
+  
+  CustomProgram o[#blue]-> SmsService : Send Message w/ Url
+  SmsService --[#blue]> Recipient : Text <&bell>
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  participant PandaDoc order 1
+  actor User order 2
+
+  participant msPowerAutomateFlow order 3
+
+  Box SharePoint
+    collections Folders order 4
+  end Box
+
+  PandaDoc <-> User : data entry / signs
+  
+  group#LightGray #FFF7E3 connector monitors    
+    PandaDoc -[#blue]>o msPowerAutomateFlow : document completed trigger
+	PandaDoc <-[#blue]->o msPowerAutomateFlow : fetch PDF <&paperclip>
+  end
+ 
+  msPowerAutomateFlow o[#blue]-> Folders : save PDF <&paperclip>
+ 
+@enduml

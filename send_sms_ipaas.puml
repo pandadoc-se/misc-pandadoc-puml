@@ -1,0 +1,30 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+skinparam responseMessageBelowArrow true
+
+  participant CustomProgram order 1
+  participant PandaDoc order 2
+  participant iPaaS order 3
+  participant SmsService order 4
+  actor Recipient order 5
+
+  CustomProgram o-[#red]> PandaDoc : Create
+  CustomProgram o-[#red]> PandaDoc : Send w/ Silent
+
+  Group#DarkGray #FFF7E3 monitor
+  
+    PandaDoc -[#blue]>o iPaaS : Trigger - Document Sent from PandaDoc
+    PandaDoc <-[#blue]->o iPaaS : Get Document (Details) by Id
+
+    Group#White #LightGray Recipients Loop   <size:20><&loop></size>
+      iPaaS o-[#blue]> SmsService : Send Message w/ Url
+      SmsService -[#blue]> Recipient : Text <&bell>
+	end
+
+  end
+
+@enduml

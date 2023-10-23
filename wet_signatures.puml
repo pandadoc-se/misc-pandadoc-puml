@@ -1,0 +1,35 @@
+@startuml 'title' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+  
+skinparam responseMessageBelowArrow true
+
+  actor Recipient order 1
+  participant Printer order 2
+  participant Scanner order 3
+  participant PandaDoc order 4
+  actor DocOwnerSender order 5
+  
+  Recipient -> PandaDoc : Print Document <&print>
+
+  autonumber stop
+  PandaDoc --> Printer : Electronic Copy <i>(Unsigned)</i> <&file>
+  Printer --> Recipient : Physical Copy <i>(Unsigned)</i> <&document>
+  autonumber resume
+
+  Recipient -[#blue]> Recipient : Sign Physical Copy <&pencil>
+  Recipient -> Scanner : Scan Physical Copy <&camera-slr>
+
+  autonumber stop
+  Scanner --> Recipient : Electronic Copy <i>(Signed)</i> <&file>
+  autonumber resume
+
+  Recipient -> PandaDoc : Upload/Attach Signed Document <&paperclip>
+
+  Recipient -> DocOwnerSender : Manual Out-Of-Band Notifictaion <&bell>
+
+  DocOwnerSender -[#red]> PandaDoc : Manually Completes Document <&check>
+
+@enduml

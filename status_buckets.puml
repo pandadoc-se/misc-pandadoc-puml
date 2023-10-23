@@ -1,0 +1,36 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+!theme  metal
+
+  box Opened #EAEFEB
+    participant New order 0 #cornflowerblue
+    participant Backlog order 1 #cornflowerblue
+    participant Hold order 2 #EBE5F3
+    participant InProgress order 3 #47B972
+    participant Standby order 4 #Gainsboro
+  end box
+   
+  box Closed #WhiteSmoke
+    participant Closed order 5 #Red
+  end box
+  
+  New -> Backlog
+  Backlog <-> Hold
+  Backlog <-> InProgress
+  Hold <-> InProgress
+  InProgress <-> Standby
+  Standby -> Closed
+  InProgress -> Closed
+
+legend
+  |=  | **Color Legend** | **Bucket(s)** |
+  |<#cornflowerblue>| Waiting on **Me** | New, Backlog |
+  |<#EBE5F3>| Waiting on someone/something else | Hold |
+  |<#47B972>| In-Progress | In-Progress |
+  |<#Gainsboro>| No additional work expected | Standby |
+  |<#Red>| Closed | Closed |
+endlegend
+
+@enduml

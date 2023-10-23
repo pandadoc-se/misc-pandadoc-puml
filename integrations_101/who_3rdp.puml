@@ -1,0 +1,25 @@
+@startuml 'who_clients.puml' 
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+skinparam sequenceMessageAlign center
+
+  Box iPaaS #E8F2FE
+    participant CustomPrograms1 order 1
+  end Box
+
+  Box PandaDoc #EAEFEB
+    queue WebHook1 order 2
+    participant PublicApis order 3
+	queue WebHook2 order 4
+  end Box
+
+  Box CRM AddOns #E8F2FE
+    participant CustomPrograms2 order 5
+  end Box
+
+  CustomPrograms1 o-[#red]> PublicApis : **Inbound**\n//(Data)//<&paperclip>
+  WebHook1 --[#orange]> CustomPrograms1 : **Outbound**\n//(Data)//<&paperclip>
+  CustomPrograms2 o-[#red]> PublicApis : **Inbound**\n//(Data)//<&paperclip>
+  WebHook2 --[#orange]> CustomPrograms2 : **Outbound**\n//(Data)//<&paperclip>
+@enduml

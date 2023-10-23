@@ -1,0 +1,22 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  participant CRMorAPI order 1
+  participant PandaDoc order 2
+  actor User order 3
+  participant CustomProgram order 4
+  collections Targets order 5
+
+
+  CRMorAPI -> PandaDoc : creates document
+  PandaDoc <-> User : data entry / signs
+  
+  group#LightGray #FFF7E3 listen
+    PandaDoc -[#blue]>o CustomProgram : document completed webhook <&paperclip>
+    CustomProgram o[#blue]-> Targets : Custom Action(s)
+  end
+
+@enduml

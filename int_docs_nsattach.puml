@@ -1,0 +1,23 @@
+@startuml 'title'
+
+!include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
+
+autonumber
+
+  Box PandaDoc #WhiteSmoke
+    participant Document order 1
+    participant ProcessAutomations order 2
+  end Box
+
+  Box Netsuite
+    database Object order 3
+  end Box
+
+  group#LightGray #FFF7E3 monitor
+    Document -[#red]>o ProcessAutomations: Status Changes (Sent or Completed)
+    ProcessAutomations o-[#red]> Object: Attach PDF <&paperclip>
+  end
+
+  note right: Vendor, \nOpportunity, or \nPurchase-Order
+
+@enduml
