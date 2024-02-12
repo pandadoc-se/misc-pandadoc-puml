@@ -1,6 +1,7 @@
 @startuml 'title' 
 
 !include_once https://raw.github.com/pandadoc-se/misc-pandadoc-puml/main/pandadoc_defaults.puml
+!theme silver
 
 autonumber
   

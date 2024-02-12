@@ -1,7 +1,6 @@
 @startuml 'title'
 
 !include https://raw.githubusercontent.com/jimbarry0406/pandadoc/main/puml/pandadoc_defaults.puml
-
 !theme  metal
 
   box Opened #EAEFEB
