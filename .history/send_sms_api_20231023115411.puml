@@ -1,7 +1,7 @@
 
 @startuml 'title' 
 
-!include https://raw.github.com/pandadoc-se/misc-pandadoc-puml/main/pandadoc_defaults.puml
+!include https://raw.githubuserconnect.com/pandadoc-se/misc-pandadoc-puml/main/pandadoc_defaults.puml
 
 autonumber
 
