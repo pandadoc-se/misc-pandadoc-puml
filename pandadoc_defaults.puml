@@ -12,7 +12,7 @@ left header
 endheader
 
 footer
-  <color #177F59>© 2023 PandaDoc Inc. All rights reserved.</color>
+  <color #177F59>© 2023-2024 PandaDoc Inc. All rights reserved.</color>
 endfooter
 
 skinparam NoteBackgroundColor #E8F2FE
