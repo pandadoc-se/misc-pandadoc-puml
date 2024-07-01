@@ -1,0 +1,31 @@
+@startuml 'WorkatoLogging' 
+
+!include_once https://raw.github.com/pandadoc-se/misc-pandadoc-puml/main/pandadoc_defaults.puml
+!theme cyborg-outline
+!pragma useVerticalIf on
+
+|#blue|c| **Workato:** Client Workspace
+|#blue|a| **Workato:** PD Admin Workspace
+|#technology|g| **gSheets**
+|#purple|s| **Slack**
+
+|c|
+start
+:local log <:gear:>;
+:webhook <:zap:>;
+|a|
+:local log <:gear:>;
+|a|
+:webhook <:zap:>;
+|g|
+:new row <:sunny:>;
+|a|
+if (error?) then (**YES**)
+|s|
+:alert <:warning:>;
+else (//no//)
+endif
+|a|
+stop
+
+@enduml
