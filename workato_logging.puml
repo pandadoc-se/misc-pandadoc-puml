@@ -17,7 +17,9 @@ start
 :centralized log <:gear:>;
 :create session <:1f39f:>;
 :gSheet logging webhook <:27a1:>;
+break
 |g|
+fork
 :validate session api <:zap:>;
 |a|
 :lookup session <:1f39f:>;
@@ -26,6 +28,9 @@ if (VALID?) then (**YES**)
 :new row <:sunny:>;
 else (//no//)
 endif
+stop
+end fork
+break
 |a|
 if (ERROR?) then (**YES**)
 |s|
