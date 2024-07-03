@@ -4,28 +4,37 @@
 !theme cyborg-outline
 !pragma useVerticalIf on
 
-|#blue|c| **Workato:** Client Workspace
-|#blue|a| **Workato:** PD Admin Workspace
+|#lightgray|c| **Workato:** Client Workspace
+|#lightgray|a| **Workato:** PD Admin Workspace
 |#technology|g| **gSheets**
 |#purple|s| **Slack**
 
 |c|
 start
 :local log <:gear:>;
-:api <:zap:>;
+:centralized logging api <:zap:>;
 |a|
-:local log <:gear:>;
-|a|
-:webhook <:zap:>;
+:centralized log <:gear:>;
+:create session <:1f39f:>;
+:gSheet logging webhook <:27a1:>;
 |g|
-:new row <:sunny:>;
+:validate session api <:zap:>;
 |a|
-if (error?) then (**YES**)
-|s|
-:alert <:warning:>;
+:lookup session <:1f39f:>;
+|g|
+if (VALID?) then (**YES**)
+:new row <:sunny:>;
 else (//no//)
 endif
 |a|
+if (ERROR?) then (**YES**)
+|s|
+:alert <:1f6a8:>;
+else (//no//)
+endif
+|a|
+:wait... <:clock1:>;
+:cleanup session <:1f39f:>;
 stop
 
 @enduml
