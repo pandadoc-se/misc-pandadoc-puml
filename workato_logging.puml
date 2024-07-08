@@ -15,7 +15,7 @@ start
 :centralized logging api <:zap:>;
 |a|
 :centralized log <:gear:>;
-:create session <:1f39f:>;
+:create/extend session <:1f39f:>;
 :gSheet logging webhook <:27a1:>;
 break
 |g|
@@ -38,8 +38,10 @@ if (ERROR?) then (**YES**)
 else (//no//)
 endif
 |a|
-:wait... <:clock1:>;
+if (LAST?) then (**YES**)
 :cleanup session <:1f39f:>;
+else (//no, cached//)
+endif
 stop
 
 @enduml
