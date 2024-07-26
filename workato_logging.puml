@@ -4,14 +4,13 @@
 !theme cyborg-outline
 !pragma useVerticalIf on
 
-|#lightgray|c| **Workato:** Client Workspace
-|#lightgray|a| **Workato:** PD Admin Workspace
+|#lightgray|c| **Workato:** Custom Connector Actions
+|#lightgray|a| **Workato:** Solution Engineering Workspace
 |#technology|g| **gSheets**
 |#purple|s| **Slack**
 
 |c|
 start
-:local log <:gear:>;
 :centralized logging api <:zap:>;
 |a|
 :centralized log <:gear:>;
