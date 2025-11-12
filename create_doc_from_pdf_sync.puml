@@ -1,9 +1,5 @@
 @startuml 'title' 
 
-left header
-  <$pdlogo>
-endheader
-
 footer
   <color #177F59>© 2023-2024 PandaDoc Inc. All rights reserved.</color>
 endfooter
