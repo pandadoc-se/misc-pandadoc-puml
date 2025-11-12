@@ -1,6 +1,13 @@
 @startuml 'title' 
 
-!include_once https://raw.github.com/pandadoc-se/misc-pandadoc-puml/main/pandadoc_defaults.puml
+footer
+  <color #177F59>© 2023-2024 PandaDoc Inc. All rights reserved.</color>
+endfooter
+
+skinparam NoteBackgroundColor #E8F2FE
+skinparam NoteFontColor #242424
+skinparam NoteFontName Bradley Hand
+
 !theme silver
 
 Sample: Flow
